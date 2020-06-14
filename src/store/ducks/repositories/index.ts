@@ -1,5 +1,5 @@
-import { IRepositoriesState, RepositoriesTypes } from './types';
 import { Reducer } from 'redux';
+import { IRepositoriesState, RepositoriesTypes } from './types';
 
 const INITIAL_STATE: IRepositoriesState = {
   data: [
@@ -14,18 +14,22 @@ const INITIAL_STATE: IRepositoriesState = {
 
 const reducer: Reducer<IRepositoriesState> = (
   state = INITIAL_STATE,
-  action
+  action,
 ) => {
   switch (action.type) {
     case RepositoriesTypes.LOAD_REQUEST:
       return { ...state, loading: true };
 
     case RepositoriesTypes.LOAD_SUCCESS:
-      const { data } = action.payload;
-      return { ...state, loading: false, error: false, data };
+
+      return {
+        ...state, loading: false, error: false, data: action.payload.data,
+      };
 
     case RepositoriesTypes.LOAD_FAILURE:
-      return { ...state, loading: false, error: true, data: [] };
+      return {
+        ...state, loading: false, error: true, data: [],
+      };
 
     default:
       return state;

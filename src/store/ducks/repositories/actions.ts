@@ -1,14 +1,11 @@
 import { action } from 'typesafe-actions';
+import { Action } from 'redux';
 import { RepositoriesTypes, IRepository } from './types';
 
-export function loadRequest() {
-  action(RepositoriesTypes.LOAD_REQUEST);
-}
+export const loadRequest = ():Action => action(RepositoriesTypes.LOAD_REQUEST);
 
-export function loadSucess(data: IRepository[]) {
-  action(RepositoriesTypes.LOAD_SUCCESS, data);
-}
+export const loadSuccess = (data: IRepository[]):Action => action(
+  RepositoriesTypes.LOAD_SUCCESS, { data },
+);
 
-export function loadFailure() {
-  action(RepositoriesTypes.LOAD_FAILURE);
-}
+export const loadFailure = ():Action => action(RepositoriesTypes.LOAD_FAILURE);

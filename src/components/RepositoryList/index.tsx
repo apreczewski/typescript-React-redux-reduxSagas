@@ -25,7 +25,15 @@ class RepositoryList extends Component<Props> {
 
   render() {
     const { repositories } = this.props;
-    return <ul>{repositories.map((rep) => rep.name)}</ul>;
+    return (
+      <ul>
+        {repositories.map((rep) => (
+          <li>
+            {rep.name}
+          </li>
+        ))}
+      </ul>
+    );
   }
 }
 
